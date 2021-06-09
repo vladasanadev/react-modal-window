@@ -1,0 +1,18 @@
+{
+"modalDAta":[  
+    {
+       "id":1,
+         "header": "Are u sure wanna close?",
+         "text": "If u delete wont be able to restore"
+
+
+    },  
+   {
+         "id":2,
+         "header": "MODAL 2",
+         "text": "Modal 2 text"
+
+    }
+       
+]
+}
