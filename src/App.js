@@ -2,13 +2,22 @@ import React, { Component, useEffect } from "react";
 import Button from "./components/Button/Button.jsx";
 import Modal from "./components/Modal/Modal.jsx";
 import data from "../src/common-files/data.json";
-import shopData from "../src/common-files/products.json";
+import products from "./products.json";
+import CardList from "./components/CardList/CardList.jsx";
+import Card from "./components/Card/Card.jsx";
+import img from "./img/products/1.jpg";
 
 class App extends React.Component {
   state = {
     show: false,
     modalInfo: {},
+    productData: [],
   };
+
+  componentDidMount() {
+    this.setState({ productData: products });
+    console.log(this.state.productData);
+  }
 
   updateModal = (id) => {
     const modalInfo = data.modalDAta.filter((modal) => modal.id === id);
@@ -26,15 +35,6 @@ class App extends React.Component {
   };
 
   render() {
-    // useEffect(() => {
-    //   fetch("products.json", {
-    //     header: {
-    //       "Content-type": "application/json",
-    //     },
-    //   }).then((r) => r.json());
-    //   console.log("data products", data);
-    // }, []);
-
     console.log(data);
     const dataID = {
       buttonOne: 1,
@@ -42,6 +42,13 @@ class App extends React.Component {
     };
     return (
       <div className="App">
+        <CardList
+          productInfo={products}
+          handler={() => {
+            this.updateModal(dataID.buttonOne);
+          }}
+        />
+
         {this.state.show && (
           <Modal
             show={this.state.show}
@@ -80,6 +87,19 @@ class App extends React.Component {
       </div>
     );
   }
+
+  // componentDidMount() {
+  //   fetch(data, {
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json",
+  //     },
+  //   }).then((r) => console.log(r.json()));
+  // .then((res) => {
+  //   console.log(res);
+  //   this.setState({ productData: res });
+  // });
+  // }
 }
 
 export default App;
